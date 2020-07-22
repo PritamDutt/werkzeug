@@ -4,7 +4,7 @@ import warnings
 from datetime import datetime
 from datetime import timedelta
 from email.utils import parsedate_tz
-from hashlib import md5
+from hashlib import sha1
 from time import gmtime
 from time import time
 from urllib.parse import unquote_to_bytes as _unquote
@@ -794,7 +794,7 @@ def parse_etags(value):
 
 def generate_etag(data):
     """Generate an etag for some data."""
-    return md5(data).hexdigest()
+    return sha1(data).hexdigest()
 
 
 def parse_date(value):

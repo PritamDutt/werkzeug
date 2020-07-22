@@ -28,7 +28,7 @@ PIN_TIME = 60 * 60 * 24 * 7
 def hash_pin(pin):
     if isinstance(pin, str):
         pin = pin.encode("utf-8", "replace")
-    return hashlib.md5(pin + b"shittysalt").hexdigest()[:12]
+    return hashlib.sha1(pin + b"shittysalt").hexdigest()[:12]
 
 
 _machine_id = None
@@ -169,7 +169,7 @@ def get_pin_and_cookie_name(app):
     # within the unauthenticated debug page.
     private_bits = [str(uuid.getnode()), get_machine_id()]
 
-    h = hashlib.md5()
+    h = hashlib.sha1()
     for bit in chain(probably_public_bits, private_bits):
         if not bit:
             continue
