@@ -55,14 +55,14 @@ def test_password_hashing():
     assert fakehash == "plain$$default"
     assert check_password_hash(fakehash, "default")
 
-    mhash = generate_password_hash("default", method="md5")
-    assert mhash.startswith("md5$")
+    mhash = generate_password_hash("default", method="sha1")
+    assert mhash.startswith("sha1$")
     assert check_password_hash(mhash, "default")
 
-    legacy = "md5$$c21f969b5f03d33d43e04f8f136e7682"
+    legacy = "sha1$$7505d64a54e061b7acd54ccd58b49dc43500b635"
     assert check_password_hash(legacy, "default")
 
-    legacy = "md5$$c21f969b5f03d33d43e04f8f136e7682"
+    legacy = "sha1$$7505d64a54e061b7acd54ccd58b49dc43500b635"
     assert check_password_hash(legacy, "default")
 
 
